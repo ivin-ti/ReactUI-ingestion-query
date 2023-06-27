@@ -5,8 +5,17 @@ function App() {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const url = `https://query.api.com/${question}`;
+
+    try {
+      const response = await fetch(url);
+      // const data = await response.json();
+      // const answerFromApi = data.answer;
+    } catch (error) {
+      console.log('Error:', error);
+    }
     setAnswer(question);
     setQuestion('');
   };
