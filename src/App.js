@@ -1,85 +1,46 @@
 import React, { useState } from 'react';
 import './styles.css';
 
+import {
+  GdriveForm,
+  QueryForm,
+ } from './ui-components';
+ 
+ import {TextField } from '@aws-amplify/ui-react';
+
 // Form component for question and answer
-function QuestionForm() {
-  const [question, setQuestion] = useState('');
+function QueryComponent() {
   const [answer, setAnswer] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const url = `https://query.api.com/${question}`;
-
-    try {
-      const response = await fetch(url);
-      // const data = await response.json();
-      // const answerFromApi = data.answer;
-    } catch (error) {
-      console.log('Error with query:', error);
-    }
-    setAnswer(question);
-    setQuestion('');
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="form">
-      <label className="label">
-        Question:
-        <input
-          type="text"
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          className="input"
-        />
-      </label>
-      <br />
-      <label className="label">
-        Answer:
-        <input
-          type="text"
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-          className="input"
-          readOnly
-        />
-      </label>
-      <br />
-      <button type="submit" className="button">Submit</button>
-    </form>
+    <div>
+      <QueryForm
+    onSubmit={async (fields) => {
+      const url = `https://query.api.com/${fields.Field0}`;
+      try {
+        const response = await fetch(url);
+      } catch (error) {
+        console.log('Error with query:', error);
+      }
+      console.log(fields.Field0)
+      setAnswer(fields.Field0);
+  }}/>
+    <TextField label="Query Answer" isReadOnly={true} value={answer}/>
+    </div>
   );
 }
 
-// Form component for Google Drive folder link
-function GDriveForm() {
-  const [gdriveLink, setGDriveLink] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const url = `https://ingestion.api.com/${gdriveLink}`;
-
-    try {
-      const response = await fetch(url);
-    } catch (error) {
-      console.log('Error with ingestion:', error);
-    }
-
-    setGDriveLink('');
-  };
-
+function Gdrivecomponent() {
   return (
-    <form onSubmit={handleSubmit} className="form">
-      <label className="label">
-        GDrive Folder Link:
-        <input
-          type="text"
-          value={gdriveLink}
-          onChange={(e) => setGDriveLink(e.target.value)}
-          className="input"
-        />
-      </label>
-      <br />
-      <button type="submit" className="button">Submit</button>
-    </form>
+    <GdriveForm
+    onSubmit={async (fields) => {
+        const url = `https://ingestion.api.com/${fields.Field0}`;
+        try {
+          const response = await fetch(url);
+        } catch (error) {
+          console.log('Error with ingestion:', error);
+        }
+    }}/>
   );
 }
 
@@ -87,9 +48,8 @@ function GDriveForm() {
 function App() {
   return (
     <div className="container">
-      <GDriveForm />
-      <br />
-      <QuestionForm />
+      <Gdrivecomponent />
+      <QueryComponent />
     </div>
   );
 }
