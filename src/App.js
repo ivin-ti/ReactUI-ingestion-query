@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './styles.css';
+import { Amplify } from 'aws-amplify';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import awsExports from './aws-exports';
 
 import {
   GdriveForm,
@@ -43,15 +47,28 @@ function Gdrivecomponent() {
     }}/>
   );
 }
+Amplify.configure(awsExports);
 
 // Main App component
-function App() {
+// function App({ signOut, user }) {
+//   return (
+//     <div className="container">
+//       <Gdrivecomponent />
+//       <QueryComponent />
+//     </div>
+//   );
+// }
+
+// export default App;
+function App({ signOut, user }) {
   return (
     <div className="container">
       <Gdrivecomponent />
       <QueryComponent />
+      <br />
+      <button onClick={signOut}>Sign out</button>
     </div>
   );
 }
 
-export default App;
+export default withAuthenticator(App);

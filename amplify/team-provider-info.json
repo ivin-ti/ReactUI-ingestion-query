@@ -10,6 +10,11 @@
       "StackName": "amplify-ingestionqueryui-staging-93115",
       "StackId": "arn:aws:cloudformation:us-east-1:346945241475:stack/amplify-ingestionqueryui-staging-93115/879e4bc0-1596-11ee-9aa4-0e0d5f9048ad",
       "AmplifyAppId": "d8sasq7nbxgix"
+    },
+    "categories": {
+      "auth": {
+        "ingestionqueryUI": {}
+      }
     }
   }
 }
