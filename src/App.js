@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './styles.css';
 
-function App() {
+// Form component for question and answer
+function QuestionForm() {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
-  const [gdriveLink, setGDriveLink] = useState('');
 
-  const handleQuestionSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const url = `https://query.api.com/${question}`;
 
@@ -21,7 +21,39 @@ function App() {
     setQuestion('');
   };
 
-  const handleGDriveSubmit = async (e) => {
+  return (
+    <form onSubmit={handleSubmit} className="form">
+      <label className="label">
+        Question:
+        <input
+          type="text"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          className="input"
+        />
+      </label>
+      <br />
+      <label className="label">
+        Answer:
+        <input
+          type="text"
+          value={answer}
+          onChange={(e) => setAnswer(e.target.value)}
+          className="input"
+          readOnly
+        />
+      </label>
+      <br />
+      <button type="submit" className="button">Submit</button>
+    </form>
+  );
+}
+
+// Form component for Google Drive folder link
+function GDriveForm() {
+  const [gdriveLink, setGDriveLink] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const url = `https://ingestion.api.com/${gdriveLink}`;
 
@@ -35,48 +67,29 @@ function App() {
   };
 
   return (
+    <form onSubmit={handleSubmit} className="form">
+      <label className="label">
+        GDrive Folder Link:
+        <input
+          type="text"
+          value={gdriveLink}
+          onChange={(e) => setGDriveLink(e.target.value)}
+          className="input"
+        />
+      </label>
+      <br />
+      <button type="submit" className="button">Submit</button>
+    </form>
+  );
+}
+
+// Main App component
+function App() {
+  return (
     <div className="container">
-      <div className="form-container">
-        <form onSubmit={handleGDriveSubmit} className="form">
-          <label className="label">
-            GDrive Folder Link:
-            <input
-              type="text"
-              value={gdriveLink}
-              onChange={(e) => setGDriveLink(e.target.value)}
-              className="input"
-            />
-          </label>
-          <br />
-          <button type="submit" className="button">Submit</button>
-        </form>
-      </div>
-      <div className="form-container">
-        <form onSubmit={handleQuestionSubmit} className="form">
-          <label className="label">
-            Question:
-            <input
-              type="text"
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              className="input"
-            />
-          </label>
-          <br />
-          <label className="label">
-            Answer:
-            <input
-              type="text"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              className="input"
-              readOnly
-            />
-          </label>
-          <br />
-          <button type="submit" className="button">Submit</button>
-        </form>
-      </div>
+      <GDriveForm />
+      <br />
+      <QuestionForm />
     </div>
   );
 }
