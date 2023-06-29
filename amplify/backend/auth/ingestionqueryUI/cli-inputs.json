@@ -60,7 +60,7 @@
     },
     "breakCircularDependency": true,
     "dependsOn": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://mkcbzgak6oz3-staging.auth.us-east-1.amazoncognito.com/oauth2/idpresponse\"],\"LogoutURLs\":[\"https://mkcbzgak6oz3-staging.auth.us-east-1.amazoncognito.com/oauth2/idpresponse\"]}",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://main.d8sasq7nbxgix.amplifyapp.com\"],\"LogoutURLs\":[\"https://main.d8sasq7nbxgix.amplifyapp.com\"]}",
     "authProviders": [],
     "thirdPartyAuth": false
   }
