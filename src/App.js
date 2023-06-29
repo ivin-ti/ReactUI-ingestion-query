@@ -11,6 +11,7 @@ import QueryComponent from './QueryComponent';
 
 Amplify.configure(awsExports);
 
+
 function App({ signOut, user }) {
   return (
     <div className="container">
